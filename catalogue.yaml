@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: catalogue-secret
+type: Opaque
+stringData:
+  db-dsn: "catalogue:adslu3u4D6l@tcp(catalogue-db:3306)/catalogue_db"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue-config
+data:
+  PORT: "80"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue
+spec:
+  selector:
+    matchLabels:
+      app: catalogue
+  template:
+    metadata:
+      labels:
+        app: catalogue
+    spec:
+      containers:
+        - name: catalogue
+          image: abdvswmdr/soqonicatalogue:latest
+          imagePullPolicy: Always
+          command: ["/app"]
+          args:
+            - "-port=80"
+            - "-DSN=$(DB_DSN)"
+          env:
+            - name: DB_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: catalogue-secret
+                  key: db-dsn
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue
+spec:
+  type: NodePort
+  selector:
+    app: catalogue
+  ports:
+    - port: 80
+      targetPort: 80
