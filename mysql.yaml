@@ -5,9 +5,7 @@ metadata:
 type: Opaque
 stringData:
   MYSQL_ROOT_PASSWORD: root
-  MYSQL_DATABASE: catalogue_db
-  MYSQL_USER: catalogue
-  MYSQL_PASSWORD: adslu3u4D6l
+  MYSQL_DATABASE: socksdb
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -35,7 +33,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8
+          image: abdvswmdr/soqonicatalogue-db:latest
           envFrom:
             - secretRef:
                 name: mysql-secret

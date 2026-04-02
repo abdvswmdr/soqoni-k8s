@@ -4,7 +4,7 @@ metadata:
   name: catalogue-secret
 type: Opaque
 stringData:
-  db-dsn: "catalogue:adslu3u4D6l@tcp(catalogue-db:3306)/catalogue_db"
+  db-dsn: "catalogue_user:default_password@tcp(catalogue-db:3306)/socksdb"
 ---
 apiVersion: v1
 kind: ConfigMap

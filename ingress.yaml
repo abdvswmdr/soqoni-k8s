@@ -22,7 +22,7 @@ spec:
               service:
                 name: carts
                 port:
-                  number: 8081
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
