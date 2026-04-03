@@ -16,13 +16,6 @@ spec:
                 name: catalogue
                 port:
                   number: 80
-          - path: /cart
-            pathType: Prefix
-            backend:
-              service:
-                name: carts
-                port:
-                  number: 80
           - path: /
             pathType: Prefix
             backend:
