@@ -18,11 +18,11 @@ spec:
             - containerPort: 8079
           resources:
             requests:
-              cpu: "100m"
+              cpu: "100m"         # 0.1 cores reserved for scheduling
               memory: "128Mi"
             limits:
-              cpu: "500m"
-              memory: "256Mi"
+              cpu: "500m"         # avoid throttling
+              memory: "256Mi"     # OOM-killed if exceed
 ---
 apiVersion: v1
 kind: Service
