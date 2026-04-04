@@ -25,6 +25,7 @@ spec:
     metadata:
       labels:
         app: catalogue
+        version: v1
     spec:
       containers:
         - name: catalogue
