@@ -22,7 +22,8 @@ spec:
       containers:
         - name: catalogue
           image: abdvswmdr/soqonicatalogue:3db5422
-          imagePullPolicy: IfNotPresent
+          # imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           command: ["/app"]
           args:
             - "-port=80"

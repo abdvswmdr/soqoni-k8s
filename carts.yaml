@@ -23,7 +23,8 @@ spec:
       containers:
         - name: carts
           image: abdvswmdr/soqonicart:latest
-          imagePullPolicy: IfNotPresent
+          # imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: carts-config
