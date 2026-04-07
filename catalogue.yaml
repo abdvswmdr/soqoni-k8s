@@ -19,6 +19,8 @@ spec:
         app: catalogue
         version: v1
     spec:
+      securityContext:
+        runAsUser: 0
       containers:
         - name: catalogue
           image: abdvswmdr/soqonicatalogue:3db5422
