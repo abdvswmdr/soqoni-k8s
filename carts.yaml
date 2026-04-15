@@ -28,6 +28,12 @@ spec:
           envFrom:
             - configMapRef:
                 name: carts-config
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: carts-secret
+                  key: mongo-uri
           ports:
             - containerPort: 8081
           resources:
