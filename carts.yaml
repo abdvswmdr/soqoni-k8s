@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -22,7 +23,8 @@ spec:
     spec:
       containers:
         - name: carts
-          image: abdvswmdr/soqonicart:latest
+          # image: abdvswmdr/soqonicart:latest
+          image: abdvswmdr/soqonicart:18445d8
           # imagePullPolicy: IfNotPresent
           imagePullPolicy: Always
           envFrom:

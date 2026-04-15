@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: abdvswmdr/soqonifrontend:c54a8ec
+          image: abdvswmdr/soqonifrontend:37009ca
           # image: abdvswmdr/soqonifrontend:latest
           # imagePullPolicy: IfNotPresent
           imagePullPolicy: Always
@@ -39,5 +40,3 @@ spec:
     - port: 8079
       targetPort: 8079
 ---
-    
-    

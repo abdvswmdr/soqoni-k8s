@@ -35,9 +35,10 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:5.7
+          # image: mysql:5.7
           # imagePullPolicy: IfNotPresent
-          imagePullPolicy: Always
+          image: abdvswmdr/soqonicatalogue-db:3db5422
+          imagePullPolicy: Never
           envFrom:
             - secretRef:
                 name: mysql-secret
