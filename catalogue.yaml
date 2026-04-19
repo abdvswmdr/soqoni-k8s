@@ -24,8 +24,7 @@ spec:
         runAsUser: 0
       containers:
         - name: catalogue
-          image: abdvswmdr/soqonicatalogue:3db5422
-          # imagePullPolicy: IfNotPresent
+          image: abdvswmdr/soqonicatalogue:e774a9c
           imagePullPolicy: Always
           command: ["/app"]
           args:

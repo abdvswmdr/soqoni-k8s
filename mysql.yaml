@@ -37,7 +37,7 @@ spec:
         - name: mysql
           # image: mysql:5.7
           # imagePullPolicy: IfNotPresent
-          image: abdvswmdr/soqonicatalogue-db:3db5422
+          image: abdvswmdr/soqonicatalogue-db:e774a9c
           imagePullPolicy: Never
           envFrom:
             - secretRef:
