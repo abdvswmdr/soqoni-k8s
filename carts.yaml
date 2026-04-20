@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: carts
-          image: abdvswmdr/soqonicart:latest
+          image: abdvswmdr/soqonicart:75073de
           # imagePullPolicy: IfNotPresent
           imagePullPolicy: Always
           envFrom:
