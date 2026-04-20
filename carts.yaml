@@ -36,6 +36,10 @@ spec:
                   key: mongo-uri
           ports:
             - containerPort: 8081
+          volumeMounts:
+            - name: kv-secrets
+              mountPath: /mnt/secrets
+              readOnly: true
           resources:
             requests:
               cpu: "200m"
@@ -57,6 +61,13 @@ spec:
             initialDelaySeconds: 20
             periodSeconds: 5
             failureThreshold: 3
+      volumes:
+        - name: kv-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: carts-kv
 ---
 apiVersion: v1
 kind: Service

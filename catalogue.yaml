@@ -38,6 +38,10 @@ spec:
                   key: db-dsn
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: kv-secrets
+              mountPath: /mnt/secrets
+              readOnly: true
           resources:
             requests:
               cpu: "100m"
@@ -59,6 +63,13 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 3
+      volumes:
+        - name: kv-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: catalogue-kv
 ---
 apiVersion: v1
 kind: Service
