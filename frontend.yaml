@@ -19,6 +19,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8079
+          env:
+            - name: AUTH_URL
+              value: http://auth:8082
           resources:
             requests:
               cpu: "100m"         # 0.1 cores reserved for scheduling
