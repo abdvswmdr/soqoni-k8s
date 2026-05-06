@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: abdvswmdr/soqonifrontend:7573fff
+          image: abdvswmdr/soqonifrontend:2e0a4fb
           # imagePullPolicy: IfNotPresent
           imagePullPolicy: Always
           ports:
@@ -21,13 +21,34 @@ spec:
           env:
             - name: AUTH_URL
               value: http://auth:8082
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secret
+                  key: session-secret
+            - name: NODE_ENV
+              value: production
+            # COOKIE_SECURE must only be 'true' once HTTPS/cert-manager is live
+            - name: COOKIE_SECURE
+              value: "false"
+          volumeMounts:
+            - name: kv-secrets
+              mountPath: /mnt/secrets
+              readOnly: true
           resources:
             requests:
-              cpu: "100m"         # 0.1 cores reserved for scheduling
+              cpu: "100m"
               memory: "128Mi"
             limits:
-              cpu: "500m"         # avoid throttling
-              memory: "256Mi"     # OOM-killed if exceed
+              cpu: "500m"
+              memory: "256Mi"
+      volumes:
+        - name: kv-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: frontend-kv
 ---
 apiVersion: v1
 kind: Service
