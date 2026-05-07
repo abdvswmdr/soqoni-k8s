@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: abdvswmdr/soqonifrontend:2e0a4fb
+          image: abdvswmdr/soqonifrontend:ed5e73c
           # imagePullPolicy: IfNotPresent
           imagePullPolicy: Always
           ports:
