@@ -8,10 +8,16 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-name: "soqoni-route"
     nginx.ingress.kubernetes.io/session-cookie-expires: "3600"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "3600"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - soqoni.tech
+      secretName: soqoni-tls
   rules:
-    - http:
+    - host: soqoni.tech
+      http:
         paths:
           - path: /catalogue
             pathType: Prefix
